@@ -140,11 +140,12 @@ Happy Birthday once again, Rachiii! 🫶</div>
 <section id="music" class="hidden">
 <div class="heart">🎵</div>
 <h1>Our Special Song</h1>
-<p>Choose a song from your phone and play it here.</p>
+<p>A special song, just for this memory. ❤️</p>
 
-<input type="file" id="audioFile" accept="audio/*">
-<button onclick="playMusic()">PLAY OUR SONG 🎶</button>
-<audio id="music" controls style="width:100%;margin-top:15px"></audio>
+<audio controls preload="auto" style="width:100%;margin-top:15px">
+<source src="birthday.mp3" type="audio/mpeg">
+Your browser does not support audio.
+</audio>
 
 <button onclick="openPage('final')">ONE LAST SURPRISE 💖</button>
 </section>
