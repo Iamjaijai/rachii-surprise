@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rachiii ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+min-height:100vh;
+background:linear-gradient(145deg,#100817,#42152f,#a33b68);
+color:#fff0f5;
+font-family:Georgia,serif;
+text-align:center;
+padding:25px 15px;
+overflow-x:hidden;
+}
+.card{
+max-width:430px;
+margin:35px auto;
+padding:30px 22px;
+background:#ffffff12;
+border:1px solid #ffffff35;
+border-radius:25px;
+box-shadow:0 15px 50px #0006;
+position:relative;
+z-index:2;
+}
+h1{color:#ffd2e5;font-size:30px}
+h2{color:#ffb6d5}
+p{line-height:1.9}
+.heart{font-size:48px}
+button{
+background:#e65b91;
+color:white;
+border:0;
+border-radius:25px;
+padding:13px 22px;
+font-size:15px;
+margin:10px 4px;
+cursor:pointer;
+}
+input{
+width:100%;
+padding:13px;
+margin:12px 0;
+border-radius:12px;
+border:1px solid #e9a5c5;
+background:#ffffff18;
+color:white;
+}
+input::placeholder{color:#f5d2e1}
+.hidden{display:none!important}
+section{animation:fade 1s}
+@keyframes fade{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:translateY(0)}
+}
+#message{
+text-align:left;
+white-space:pre-line;
+line-height:2;
+}
+.photo{
+width:100%;
+border-radius:15px;
+margin-top:12px;
+}
+.float{
+position:fixed;
+bottom:-40px;
+animation:rise 5s linear forwards;
+pointer-events:none;
+z-index:1;
+}
+@keyframes rise{
+to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<section id="lock">
+<div class="heart">💗</div>
+<h1>For Rachiii</h1>
+<p>A little surprise is waiting for you...</p>
+<input type="password" id="password"
+placeholder="Enter your secret password">
+<button onclick="unlock()">Unlock My Surprise ❤️</button>
+<p id="error"></p>
+</section>
+
+<section id="home" class="hidden">
+<div class="heart">🎂</div>
+<h1>Happy Birthday Rachiii!</h1>
+<p>Today is all about you, my favourite person. 💖</p>
+<p>A little journey made with lots of love.</p>
+<button onclick="openPage('letter')">OPEN YOUR LETTER 💌</button>
+</section>
+
+<section id="letter" class="hidden">
+<div class="heart">💌</div>
+<h1>A Letter For You</h1>
+<div id="message">Rachiii birthday girl 🥳
+
+Nuvu excited ga Unnava ledho telidhu but I am really counting the moments.
+
+Once again happy birthday my dear love 😗🫶
+
+Sorry rachi koppam llo ededo anninta em pattichukoku. Nenu edho jealousy and anger lo ala matladina, please don't take it to heart.
+
+Finally it's her day 🫠 cheers to 19 🥂
+
+I hope your day is filled with happiness, smiles and beautiful memories.
+
+You are my favourite chapter. ❤️
+
+Happy Birthday once again, Rachiii! 🫶</div>
+<button onclick="openPage('memories')">OUR MEMORIES 📸</button>
+</section>
+
+<section id="memories" class="hidden">
+<div class="heart">📸</div>
+<h1>Our Little Memories</h1>
+<p>Choose your favourite photos together.</p>
+
+<input type="file" accept="image/*" onchange="photo(this,1)">
+<img id="p1" class="photo hidden">
+
+<input type="file" accept="image/*" onchange="photo(this,2)">
+<img id="p2" class="photo hidden">
+
+<input type="file" accept="image/*" onchange="photo(this,3)">
+<img id="p3" class="photo hidden">
+
+<button onclick="openPage('music')">NEXT SURPRISE 🎵</button>
+</section>
+
+<section id="music" class="hidden">
+<div class="heart">🎵</div>
+<h1>Our Special Song</h1>
+<p>Choose a song from your phone and play it here.</p>
+
+<input type="file" id="audioFile" accept="audio/*">
+<button onclick="playMusic()">PLAY OUR SONG 🎶</button>
+<audio id="music" controls style="width:100%;margin-top:15px"></audio>
+
+<button onclick="openPage('final')">ONE LAST SURPRISE 💖</button>
+</section>
+
+<section id="final" class="hidden">
+<div class="heart">💖</div>
+<h1>My Favourite Chapter</h1>
+<p>One little website, countless feelings, and one very special girl.</p>
+<h2>For you, Rachii. Always. 🌙</h2>
+<button onclick="openPage('home')">WATCH AGAIN ↻</button>
+</section>
+
+</div>
+
+<script>
+function unlock(){
+const entered=document.getElementById('password').value;
+if(entered==='1390'){
+document.getElementById('lock').classList.add('hidden');
+document.getElementById('home').classList.remove('hidden');
+}else{
+document.getElementById('error').textContent='Wrong password! Try again ❤️';
+}
+}
+
+function openPage(id){
+document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
+window.scrollTo(0,0);
+}
+
+function photo(input,n){
+if(input.files&&input.files[0]){
+let img=document.getElementById('p'+n);
+if(img.dataset.url)URL.revokeObjectURL(img.dataset.url);
+img.dataset.url=URL.createObjectURL(input.files[0]);
+img.src=img.dataset.url;
+img.classList.remove('hidden');
+}
+}
+
+function playMusic(){
+let input=document.getElementById('audioFile');
+let audio=document.getElementById('music');
+if(!input.files||!input.files[0]){
+alert('First choose a music file from your phone!');
+return;
+}
+if(audio.dataset.url)URL.revokeObjectURL(audio.dataset.url);
+audio.dataset.url=URL.createObjectURL(input.files[0]);
+audio.src=audio.dataset.url;
+audio.play().catch(()=>alert('Tap play on the audio player.'));
+}
+
+setInterval(()=>{
+let h=document.createElement('div');
+h.className='float';
+h.textContent=['❤️','💗','💕','✨'][Math.floor(Math.random()*4)];
+h.style.left=Math.random()*100+'vw';
+h.style.fontSize=(18+Math.random()*20)+'px';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+},650);
+</script>
+
+</body>
+</html>
+
